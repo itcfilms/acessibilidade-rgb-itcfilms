@@ -1,131 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Paleta RGB Acessível - ITC FILMS</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #f0f0f0;
-  }
-  header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: #1e1e1e;
-  }
-  .logo {
-    width: 80px;
-    margin-bottom: 1rem;
-  }
-  main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-    gap: 1rem;
-    padding: 1rem;
-  }
-  .color-box {
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    cursor: default;
-    transition: transform 0.2s;
-  }
-  .color-box:hover {
-    transform: scale(1.02);
-  }
-  .color-box span {
-    user-select: all;
-    cursor: pointer;
-    text-decoration: underline dotted;
-  }
-  footer {
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #888;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paleta de Cores Acessível — ITC FILMS</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #00ffcc;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .color-card {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+    }
+
+    .color-card:hover {
+      transform: scale(1.02);
+    }
+
+    .color-swatch {
+      height: 100px;
+    }
+
+    .color-info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .copy-code {
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #cccccc;
+      margin-top: 0.5rem;
+      border: 1px solid #333;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .copy-code:hover {
+      background-color: #2a2a2a;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <img src="logo-itcfilms.png" alt="Logo ITC FILMS" class="logo" />
-  <h1>Paleta de Cores Acessível para Daltônicos</h1>
-  <p>Clique e copie os códigos RGB ou Hex. Desenvolvido por ITC FILMS.</p>
-</header>
-<main>
-  <div class="color-box" style="background-color:#FFD700;">
-    <h2>🟡 Amarelo Ouro</h2>
-    <p><strong>Hex:</strong> <span>FFD700</span></p>
-    <p><strong>RGB:</strong> <span>255, 215, 0</span></p>
-  </div>
-  <div class="color-box" style="background-color:#1E90FF;">
-    <h2>🔵 Azul Brilhante</h2>
-    <p><strong>Hex:</strong> <span>1E90FF</span></p>
-    <p><strong>RGB:</strong> <span>30, 144, 255</span></p>
-  </div>
-  <div class="color-box" style="background-color:#FFFFFF; color:#000;">
-    <h2>⚪ Branco Puro</h2>
-    <p><strong>Hex:</strong> <span>FFFFFF</span></p>
-    <p><strong>RGB:</strong> <span>255, 255, 255</span></p>
-  </div>
-  <div class="color-box" style="background-color:#FF0000;">
-    <h2>🔴 Vermelho Vivo</h2>
-    <p><strong>Hex:</strong> <span>FF0000</span></p>
-    <p><strong>RGB:</strong> <span>255, 0, 0</span></p>
-  </div>
-  <div class="color-box" style="background-color:#CCFF00; color:#000;">
-    <h2>🟢 Verde Limão</h2>
-    <p><strong>Hex:</strong> <span>CCFF00</span></p>
-    <p><strong>RGB:</strong> <span>204, 255, 0</span></p>
+
+  <h1>🎨 Paleta de Cores Acessível - ITC FILMS</h1>
+  <div class="palette" id="palette">
+    <!-- Cores são geradas via JS -->
   </div>
 
-  <!-- ... (mais cores aqui, no mesmo formato, removi o #) ... -->
+  <script>
+    const colors = [
+      { nome: "Vermelho", rgb: "255,0,0" },
+      { nome: "Amarelo", rgb: "255,255,0" },
+      { nome: "Azul", rgb: "0,0,255" },
+      { nome: "Branco", rgb: "255,255,255" },
+      { nome: "Verde Limão", rgb: "173,255,47" },
+      { nome: "Laranja", rgb: "255,165,0" },
+      { nome: "Rosa", rgb: "255,105,180" },
+      { nome: "Ciano", rgb: "0,255,255" },
+      { nome: "Roxo", rgb: "128,0,128" },
+      { nome: "Cinza Claro", rgb: "211,211,211" },
+      { nome: "Cinza Escuro", rgb: "64,64,64" },
+      { nome: "Verde Bandeira", rgb: "0,128,0" },
+      { nome: "Azul Royal", rgb: "65,105,225" },
+      { nome: "Bege", rgb: "245,245,220" },
+      { nome: "Vinho", rgb: "128,0,0" },
+      { nome: "Marrom", rgb: "139,69,19" },
+      { nome: "Verde Musgo", rgb: "85,107,47" },
+      { nome: "Dourado", rgb: "255,215,0" },
+      { nome: "Prata", rgb: "192,192,192" },
+      { nome: "Preto", rgb: "0,0,0" },
+      { nome: "Lavanda", rgb: "230,230,250" },
+      { nome: "Salmão", rgb: "250,128,114" },
+      { nome: "Verde Água", rgb: "0,255,127" },
+      { nome: "Turquesa", rgb: "64,224,208" },
+      { nome: "Pêssego", rgb: "255,218,185" },
+      { nome: "Fúcsia", rgb: "255,0,255" },
+      { nome: "Oliva", rgb: "128,128,0" },
+      { nome: "Índigo", rgb: "75,0,130" },
+      { nome: "Chocolate", rgb: "210,105,30" },
+      { nome: "Coral", rgb: "255,127,80" },
+      { nome: "Verde Claro", rgb: "144,238,144" },
+      { nome: "Azul Céu", rgb: "135,206,235" },
+      { nome: "Rosa Claro", rgb: "255,182,193" },
+      { nome: "Púrpura", rgb: "160,32,240" },
+      { nome: "Tomate", rgb: "255,99,71" },
+      { nome: "Ouro Velho", rgb: "184,134,11" },
+      { nome: "Carmesim", rgb: "220,20,60" },
+      { nome: "Areia", rgb: "244,164,96" },
+      { nome: "Verde Militar", rgb: "102,124,70" },
+      { nome: "Marfim", rgb: "255,255,240" },
+      { nome: "Vermelho Escuro", rgb: "139,0,0" },
+      { nome: "Azul Petróleo", rgb: "0,128,128" },
+      { nome: "Rosa Bebê", rgb: "255,228,225" },
+      { nome: "Azul Bebê", rgb: "137,207,240" },
+      { nome: "Cinza Azulado", rgb: "119,136,153" },
+      { nome: "Verde Esmeralda", rgb: "80,200,120" },
+      { nome: "Lilás", rgb: "200,162,200" },
+      { nome: "Vermelho Alaranjado", rgb: "255,69,0" }
+    ];
 
-</main>
-<footer>
-  <p>© 2025 ITC FILMS</p>
-</footer>
+    const palette = document.getElementById("palette");
 
-<script>
-  // Cria o container do toast (avisinho)
-  const toast = document.createElement('div');
-  toast.style.position = 'fixed';
-  toast.style.bottom = '20px';
-  toast.style.right = '20px';
-  toast.style.padding = '10px 20px';
-  toast.style.background = '#4caf50';
-  toast.style.color = 'white';
-  toast.style.borderRadius = '5px';
-  toast.style.fontSize = '14px';
-  toast.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
-  toast.style.opacity = '0';
-  toast.style.transition = 'opacity 0.3s ease';
-  toast.style.pointerEvents = 'none';
-  toast.style.zIndex = '9999';
-  toast.textContent = 'Copiado! ✔️';
-  document.body.appendChild(toast);
+    colors.forEach(({ nome, rgb }) => {
+      const card = document.createElement("div");
+      card.className = "color-card";
 
-  function showToast() {
-    toast.style.opacity = '1';
-    setTimeout(() => {
-      toast.style.opacity = '0';
-    }, 1500);
-  }
+      const swatch = document.createElement("div");
+      swatch.className = "color-swatch";
+      swatch.style.backgroundColor = `rgb(${rgb})`;
 
-  document.querySelectorAll('.color-box span').forEach(el => {
-    el.style.cursor = 'pointer';
-    el.title = 'Clique para copiar';
-    el.addEventListener('click', () => {
-      // Copia só o texto sem #
-      const textToCopy = el.textContent.trim().replace(/^#/, '');
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast();
+      const info = document.createElement("div");
+      info.className = "color-info";
+
+      const title = document.createElement("div");
+      title.textContent = nome;
+
+      const code = document.createElement("div");
+      code.className = "copy-code";
+      code.textContent = rgb;
+      code.title = "Clique para copiar";
+
+      code.addEventListener("click", () => {
+        navigator.clipboard.writeText(rgb);
+        const oldText = code.textContent;
+        code.textContent = "Copiado! ✔️";
+        setTimeout(() => {
+          code.textContent = oldText;
+        }, 1000);
       });
+
+      info.appendChild(title);
+      info.appendChild(code);
+      card.appendChild(swatch);
+      card.appendChild(info);
+      palette.appendChild(card);
     });
-  });
-</script>
+  </script>
 </body>
 </html>
